@@ -102,7 +102,7 @@ export const Index = () => {
           <div className="form__input">
             <span>
               Password{" "}
-              <Link to="/forgot" className="form__forgot">
+              <Link to="/" className="form__forgot">
                 Forgot?
               </Link>
             </span>
