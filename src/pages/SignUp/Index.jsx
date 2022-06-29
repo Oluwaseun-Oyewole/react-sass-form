@@ -21,7 +21,7 @@ export const Index = () => {
 
   const [error, setError] = useState(false);
 
-  const [success, setSuccess] = useState(true);
+  const [success, setSuccess] = useState(false);
 
   const [errorMessage, setErrorMessage] = useState("");
   const [show, setShowPassword] = useState(false);
