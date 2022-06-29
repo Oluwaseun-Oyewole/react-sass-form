@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { InputField } from "../../components/Input/Input";
 import openEye from "../../assets/icons/open-eye.svg";
+import { MdCancel } from "react-icons/md";
 import { Gf } from "../../components/GF/Gf";
 import { Link } from "react-router-dom";
 import { GrFacebook } from "react-icons/gr";
@@ -20,14 +21,12 @@ export const Index = () => {
 
   const [error, setError] = useState(false);
 
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState(true);
 
   const [errorMessage, setErrorMessage] = useState("");
   const [show, setShowPassword] = useState(false);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-
-  const [count, setCount] = useState(0);
 
   const clearForm = () => {
     setName("");
@@ -37,6 +36,7 @@ export const Index = () => {
   const showPassword = () => {
     setShowPassword(!show);
   };
+
   const handleChange = (e) => {
     setError(false);
     setSuccess(false);
@@ -64,14 +64,29 @@ export const Index = () => {
     }
   };
 
+  useEffect(() => {
+    const timeId = setTimeout(() => {
+      setSuccess(false);
+    }, 2000);
+    return () => {
+      clearTimeout(timeId);
+    };
+  });
+
   return (
     <div className="form flex flex-jc-c flex-ai-c flex-wr">
       <div className="form__wrapper">
         <form className="form__header" onSubmit={submit}>
           {success && (
-            <div className="bg-green-100 rounded p-5 text-green-900 my-4">
-              <div className="font-bold">Success</div>
-              <div className="font-bold pt-2">Sign In successful</div>
+            <div className="bg-green-100 rounded p-5 text-green-900 my-4 flex justify-between items-center">
+              <div>
+                <div className="font-bold">Success</div>
+                <div className="font-bold pt-2">Sign In successful</div>
+              </div>
+              <MdCancel
+                className="text-3xl text-green-900 cursor-pointer"
+                onClick={() => setSuccess(false)}
+              />
             </div>
           )}
 
@@ -90,7 +105,7 @@ export const Index = () => {
             <InputField
               placeholder="Olúwáṣeun"
               id="username"
-              type="text"
+              type=" "
               name="username"
               required={true}
               onChange={handleChange}
